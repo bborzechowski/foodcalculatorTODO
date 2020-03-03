@@ -1,0 +1,31 @@
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="table">
+    <table class="table table-bordered">
+    <tr>
+        <th>name</th>
+        <th>kalorie</th>
+        <th>białko</th>
+        <th>tłuszcz</th>
+        <th>weglowodany</th>
+    </tr>
+    <tr th:each="product : ${products}">
+        <td th:text="${product.getName()}"></td>
+        <td th:text="${product.getKcal()}"></td>
+        <td th:text="${product.getProtein()}"></td>
+        <td th:text="${product.getFat()}"></td>
+        <td th:text="${product.getCarbohydrates()}"></td>
+
+        <td>
+        <form action="/products/delate">
+            <input type="hidden" name="id" th:value="${product.getId()}">
+            <button type="submit">delete</button>
+        </form>
+    </td>
+        <td>
+            <form action="/products/update">
+                <input type="hidden" name="id" th:value="${product.getId()}">
+                <button type="submit">update</button>
+            </form>
+        </td>
+    </tr>
+</table>
+

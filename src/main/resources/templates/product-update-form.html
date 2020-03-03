@@ -1,0 +1,12 @@
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="form-update" >
+
+    <form action="/products/update/confirm" method="post">
+    <input type="hidden" name="id" th:value="${product.getId()}">
+    <input type="text" name="name" placeholder="name" th:value="${product.getName()}">
+    <input type="text" name="kcal" placeholder="kcal" th:value="${product.getKcal()}">
+    <input type="text" name="protein" placeholder="protein" th:value="${product.getProtein()}">
+    <input type="text" name="fat" placeholder="fat" th:value="${product.getFat()}">
+    <input type="text" name="carbohydrates" placeholder="carbohydrates" th:value="${product.getCarbohydrates()}">
+    <button type="submit">update this product</button>
+    </form>
+</div>

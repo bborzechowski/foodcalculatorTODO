@@ -1,0 +1,21 @@
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="form">
+    <h1>Witaj ma naszej stronie stwórz swój profil</h1>
+    <p>Uzupełnij wszystkie dane</p>
+    <form th:action="@{fooduser/add}" method="post">
+        <input type="text" name="firstname" placeholder="Imię">
+        <input type="text" name="surname" placeholder="Nazwisko">
+        <input type="text" name="age" placeholder="Wiek">
+        <input type="text" name="weight" placeholder="waga">
+        <input type="text" name="height" placeholder="Wysokość">
+
+        <select name="activity">
+            <option th:each="activity : ${T(foodcalculator.model.Activity).values()}" th:value="${activity.getValue()}" th:text="${activity.getDescription()}"></option>
+        </select>
+        <h2>Wybierz płeć</h2>
+        <input type="radio" id="male" name="sex" value="true">
+        <label for="male">Mężczyzna</label><br>
+        <input type="radio" id="female" name="sex" value="false">
+        <label for="female">Kobieta</label><br>
+        <button type="submit">dodaj użytkownika</button>
+    </form>
+</div>

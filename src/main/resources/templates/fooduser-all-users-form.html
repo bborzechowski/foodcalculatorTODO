@@ -1,0 +1,36 @@
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="tablefragment">
+    <table>
+        <tr>
+            <th>imię</th>
+            <th>nazwisko</th>
+            <th>wiek</th>
+            <th>waga w kg</th>
+            <th>wysokość w cm</th>
+            <th>płeć</th>
+            <th>aktywność</th>
+        </tr>
+        <tr th:each="fooduser : ${foodusers}">
+            <td th:text="${fooduser.getFirstname()}"></td>
+            <td th:text="${fooduser.getSurname()}"></td>
+            <td th:text="${fooduser.getAge()}"></td>
+            <td th:text="${fooduser.getWeight()}"></td>
+            <td th:text="${fooduser.getHeight()}"></td>
+            <td th:text="${fooduser.isSex()}"></td>
+            <td th:text="${fooduser.getActivity()}"></td>
+
+            <td>
+                <form action="/foodusers/delate">
+                    <input type="hidden" name="id" th:value="${fooduser.getId()}">
+                    <button type="submit">delete</button>
+                </form>
+            </td>
+            <td>
+                <form action="/foodusers/update">
+                    <input type="hidden" name="id" th:value="${fooduser.getId()}">
+                    <button type="submit">update</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+</div>

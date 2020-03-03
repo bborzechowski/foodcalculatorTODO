@@ -1,0 +1,13 @@
+
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="form">
+    <h1>Witaj ma naszej stronie tu w łatwy sposób policzysz kalogie swoich posiłków</h1>
+    <p>dodaj product</p>
+    <form th:action="@{food/add}" method="post">
+        <input type="text" name="name" placeholder="name">
+        <input type="text" name="kcal" placeholder="kcal">
+        <input type="text" name="protein" placeholder="protein">
+        <input type="text" name="fat" placeholder="fat">
+        <input type="text" name="carbohydrates" placeholder="carbohydrates">
+        <button type="submit">dodaj produkt</button>
+    </form>
+</div>

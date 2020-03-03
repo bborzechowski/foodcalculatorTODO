@@ -1,0 +1,20 @@
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="form-update" >
+
+    <form action="/foodusers/update/confirm" method="post">
+        <input type="hidden" name="id" th:value="${fooduser.getId()}">
+        <input type="text" name="firstname" placeholder="Imię" th:value="${fooduser.getFirstname()}">
+        <input type="text" name="surname" placeholder="Nazwisko" th:value="${fooduser.getSurname()}">
+        <input type="text" name="age" placeholder="Wiek" th:value="${fooduser.getAge()}">
+        <input type="text" name="weight" placeholder="waga" th:value="${fooduser.getWeight()}">
+        <input type="text" name="height" placeholder="Wysokość" th:value="${fooduser.getHeight()}">
+        <select name="activity">
+            <option th:each="activity : ${T(foodcalculator.model.Activity).values()}" th:value="${activity.getValue()}" th:text="${activity.getDescription()}"></option>
+        </select>
+        <input type="radio" id="male" name="sex" value="true">
+        <label for="male">Mężczyzna</label><br>
+        <input type="radio" id="female" name="sex" value="false">
+        <label for="female">Kobieta</label><br>
+        <button type="submit">dodaj użytkownika</button>
+        <button type="submit">update this product</button>
+    </form>
+</div>
