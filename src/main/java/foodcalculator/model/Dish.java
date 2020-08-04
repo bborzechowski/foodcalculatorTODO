@@ -1,15 +1,11 @@
 package foodcalculator.model;
 
-import lombok.*;
+
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
 @Table(name = "dish", schema = "foodcalculator")
 
 public class Dish {
@@ -25,5 +21,19 @@ public class Dish {
 //    private Set<Product> products;
 
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

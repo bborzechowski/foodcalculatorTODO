@@ -8,6 +8,10 @@
             <th>wysokość w cm</th>
             <th>płeć</th>
             <th>aktywność</th>
+            <th>zapotrzebowanie na kalogie</th>
+            <th>zapotrzebowanie na białko w gramach</th>
+            <th>zapotrzebowanie na tłuszcze w gramach</th>
+            <th>zapotrzebowanie na węglowodany w gramach</th>
         </tr>
         <tr th:each="fooduser : ${foodusers}">
             <td th:text="${fooduser.getFirstname()}"></td>
@@ -17,6 +21,10 @@
             <td th:text="${fooduser.getHeight()}"></td>
             <td th:text="${fooduser.isSex()}"></td>
             <td th:text="${fooduser.getActivity()}"></td>
+            <td th:text="${fooduser.getUserNutrients().getKcal()}"></td>
+            <td th:text="${fooduser.getUserNutrients().getProtein()}"></td>
+            <td th:text="${fooduser.getUserNutrients().getFat()}"></td>
+            <td th:text="${fooduser.getUserNutrients().getCarbohydrates()}"></td>
 
             <td>
                 <form action="/foodusers/delate">

@@ -3,8 +3,11 @@ package foodcalculator.controller;
 import foodcalculator.model.Activity;
 import foodcalculator.model.FoodUser;
 import foodcalculator.model.Product;
+import foodcalculator.model.UserNutrients;
 import foodcalculator.repository.FoodUserRepository;
+import foodcalculator.repository.UserNutrientsRepository;
 import foodcalculator.service.FoodUserService;
+import foodcalculator.service.UserNutrientsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,13 +23,17 @@ public class FoodUserController {
 
     private FoodUserRepository foodUserRepository;
     private FoodUserService foodUserService;
-    private Activity activity;
+    private UserNutrientsRepository userNutrientsRepository;
+    private UserNutrientsService userNutrientsServic;
 
-    public FoodUserController(FoodUserRepository foodUserRepository, FoodUserService foodUserService) {
+    public FoodUserController(FoodUserRepository foodUserRepository, FoodUserService foodUserService, UserNutrientsRepository userNutrientsRepository, UserNutrientsService userNutrientsServic) {
         this.foodUserRepository = foodUserRepository;
         this.foodUserService = foodUserService;
+        this.userNutrientsRepository = userNutrientsRepository;
+        this.userNutrientsServic = userNutrientsServic;
     }
-//    @GetMapping("/fooduser")
+
+    //    @GetMapping("/fooduser")
 //    public String home(){
 //        return "tableUser";
 //    }
@@ -35,6 +42,7 @@ public class FoodUserController {
     public String addFoodUser(@ModelAttribute FoodUser newFoodUser){
 
         FoodUser foodUser = new FoodUser();
+        UserNutrients userNutrients = new UserNutrients();
         foodUser.setFirstname(newFoodUser.getFirstname());
         foodUser.setSurname(newFoodUser.getSurname());
         foodUser.setAge(newFoodUser.getAge());
@@ -43,6 +51,21 @@ public class FoodUserController {
         foodUser.setSex(newFoodUser.isSex());
         foodUser.setActivity(newFoodUser.getActivity());
         foodUserRepository.save(foodUser);
+
+        double cal = userNutrientsServic.calculateUserCalories(
+                newFoodUser.getWeight(),
+                newFoodUser.getHeight(),
+                newFoodUser.getAge(),
+                newFoodUser.getActivity(),
+                newFoodUser.isSex());
+
+        userNutrients.setFoodUser(foodUser);
+        userNutrients.setKcal(cal);
+        userNutrients.setProtein(userNutrientsServic.calculateUserProtein(cal));
+        userNutrients.setFat(userNutrientsServic.calculateUserFat(cal));
+        userNutrients.setCarbohydrates(userNutrientsServic.calculateUserCarbohydrates(cal));
+
+        userNutrientsRepository.save(userNutrients);
         return "redirect:/foodusers";
     }
 

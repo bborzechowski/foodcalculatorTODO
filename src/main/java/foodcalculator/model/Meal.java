@@ -7,7 +7,6 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.*;
 
-@Data
 @Entity
 @Table(name = "meal")
 public class Meal {
@@ -22,7 +21,29 @@ public class Meal {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.meal")
     private Set<ProductMeal> productMeals = new HashSet<ProductMeal>(0);
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Set<ProductMeal> getProductMeals() {
+        return productMeals;
+    }
+
+    public void setProductMeals(Set<ProductMeal> productMeals) {
+        this.productMeals = productMeals;
+    }
 }
 
 

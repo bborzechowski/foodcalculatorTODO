@@ -3,7 +3,7 @@ package foodcalculator.model;
 import lombok.Data;
 
 import javax.persistence.*;
-@Data
+
 @Entity
 @Table(name = "product_meal")
 @AssociationOverrides({
@@ -17,6 +17,21 @@ public class ProductMeal  implements java.io.Serializable{
 
     private int quantity;
 
+    public ProductMealId getPk() {
+        return pk;
+    }
+
+    public void setPk(ProductMealId pk) {
+        this.pk = pk;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
     @Transient
     public Product getProduct() {

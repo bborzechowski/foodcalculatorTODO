@@ -31,7 +31,7 @@ public class ProductController {
 
     @PostMapping("/food/add")
     public String addProduct(@ModelAttribute Product newProduct){
-        Product product= new Product();
+        Product product = new Product();
         product.setName(newProduct.getName());
         product.setKcal(newProduct.getKcal());
         product.setProtein(newProduct.getProtein());
